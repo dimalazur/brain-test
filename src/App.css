@@ -96,10 +96,9 @@ label.checkbox {    font-size: .8rem;
 .list-todo-holder .item-btn-holder .btn {margin: 5px;}
 .list-todo-holder .list-group-item.item-completed .todo-text {text-decoration: line-through;}
 .list-todo-holder .item-editable {display: block;}
-.list-todo-holder .list-group-item .item-description {max-width: 90%;padding-right:12px;text-align: left;}
+.list-todo-holder .list-group-item .item-description {max-width: 83%;padding-right:12px;text-align: left;}
 .list-todo-holder .list-group-item .form-row {align-items: center;}
 .list-todo-holder {}
-
 
 
 .filter-holder {background: #fff;margin-top: 30px;padding: 10px 0;border-radius: 5px;border: 1px solid rgba(0,0,0,.125);}

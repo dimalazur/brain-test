@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoWrapContecst from './containers/TodoWrapContecst';
+import TodoWrapContext from './containers/TodoWrapContext';
 import {TodoContext} from './context/todo-context';
 import {getNotesListRender} from './selectors/';
 import uuid from 'uuid';
@@ -172,7 +172,7 @@ class AppContext extends Component {
               }
             }
           }>
-            <TodoWrapContecst />
+            <TodoWrapContext />
           </TodoContext.Provider> 
       </div>
     );

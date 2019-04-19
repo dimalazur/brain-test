@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({buttonChildren, ...props}) => {
+const Button = ({...props}) => {
     return (
-      <button  {...props}>{buttonChildren}</button>
+      <button  {...props}>{props.children}</button>
     );
 }
 
-Button.propTypes = { 
-  buttonChildren: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ])
-};
 
+Button.defaultProps = {
+   children: 'btn'
+};
 export default Button;

@@ -18,15 +18,17 @@ const ItemDescription = ({todoItemValue, todoCompleted, deleteTodo, todoEdit, on
       </div>
       <div className="item-btn-holder">
         <Button 
-          buttonChildren={<FontAwesomeIcon icon={faEdit} />} 
           className="btn btn-secondary" 
           onClick={() => todoEdit()} 
-        />
+        >
+          {<FontAwesomeIcon icon={faEdit} />}
+        </Button>
         <Button 
-          buttonChildren={<FontAwesomeIcon icon={faTrash} />} 
           className="btn btn-danger" 
           onClick={() => deleteTodo()} 
-        />
+        >  
+          {<FontAwesomeIcon icon={faTrash} />}
+        </Button>
       </div>
     </React.Fragment>
   );

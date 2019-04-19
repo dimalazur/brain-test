@@ -20,15 +20,17 @@ const FormEdit = ({todoEditableSaveHeandler, todoValue, linkRef, todoEditableCha
           </div>
           <div className="col-auto item-btn-holder">
             <Button 
-            buttonChildren={<FontAwesomeIcon icon={faSave} />} 
             className="btn btn-success" 
             onClick={ () => todoEditableSaveHeandler()} 
-            />
+            >
+              {<FontAwesomeIcon icon={faSave} />}
+            </Button>
             <Button 
-            buttonChildren={<FontAwesomeIcon icon={faTimes} />} 
             className="btn btn-info" 
             onClick={ () => onTodoEditHideForm()}
-            />
+            >
+              {<FontAwesomeIcon icon={faTimes} />}
+            </Button>
           </div>
         </div>
       </form>

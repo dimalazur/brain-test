@@ -37,9 +37,9 @@ const initialState = {
       completed: true
     },
   ],
+  filterGroup: ['All', 'Active', 'Completed'],
   filterTerm: null,
-  selectedTodo: null,
-
+  selectedTodo: null
 }
 
 

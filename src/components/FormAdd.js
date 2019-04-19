@@ -12,9 +12,10 @@ const FormAdd = ({addTodoHeandler,todoInputRefLink}) => {
         <div className="input-group-append">
           <Button 
             className="btn btn-outline-secondary" 
-            buttonChildren={<FontAwesomeIcon icon={faPlus} />} 
             onClick={(event) => addTodoHeandler(event)}
-          />
+          >
+            {<FontAwesomeIcon icon={faPlus} />}
+          </Button>
         </div>
       </div>
     </form>

@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -17,9 +17,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-*/
 
-import React from 'react';
+
+/*import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AppContext from './AppContext';
@@ -27,4 +27,4 @@ import AppContext from './AppContext';
 ReactDOM.render(
 	<AppContext />,
   document.getElementById('root'),
-);
+);*/

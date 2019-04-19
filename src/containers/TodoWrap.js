@@ -77,65 +77,64 @@ class TodoWrap extends Component {
         onTodoToggleCompleted,
         onTodoFilter,
         renderList,
-
+        filterGroup,
+        filterTerm
       } = this.props;
 
     const selectedTodoId = (selectedTodo) ? selectedTodo.id : null;
 
     return (
-      <React.Fragment> 
-        <div className="jumbotron">
-          <div className="container">
-            <FormAdd 
-              addTodoHeandler = { (event) => this.addTodoHeandler(event) }
-              todoInputRefLink = { this.todoInputRef }
-            />
-            
-            <div className="list-todo-holder">
-              <ul className="list-group">
-                {renderList.map( todo => {
-                  let cnTodoItem = classNames('list-group-item', {
-                    'item-completed': todo.completed,
-                    'item-editable': todo.id === selectedTodoId,
-                  });
-                  return ( 
-                    <li className={cnTodoItem} key={todo.id}>
-                      { ( selectedTodoId !== todo.id) ? 
-                        <ItemDescription 
-                          todoItemValue = {todo.value}
-                          todoCompleted={ todo.completed }
-                          onChangeToggleCompleted={() => onTodoToggleCompleted(todo.id)} 
-                          todoEdit={() => this.todoEditHeandler(todo.id, todo.value)} 
-                          deleteTodo={() => this.deleteTodoHeandler(todo.id)} 
-                        />
-                      :
-                        <FormEdit 
-                          todoEditableSaveHeandler = {this.todoEditableSaveHeandler}
-                          todoValue = {selectedTodo.value} 
-                          linkRef = {this.todoInputEditRef}
-                          todoEditableChangeHeandler = {this.todoEditableChangeHeandler}
-                          onTodoEditHideForm = {onTodoEditHideForm}
-                        />
-                      }
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+      <div className="jumbotron">
+        <div className="container">
+          <FormAdd 
+            addTodoHeandler = { (event) => this.addTodoHeandler(event) }
+            todoInputRefLink = { this.todoInputRef }
+          />
+          
+          <div className="list-todo-holder">
+            <ul className="list-group">
+              {renderList.map( todo => {
+                let cnTodoItem = classNames('list-group-item', {
+                  'item-completed': todo.completed,
+                  'item-editable': todo.id === selectedTodoId,
+                });
+                return ( 
+                  <li className={cnTodoItem} key={todo.id}>
+                    { ( selectedTodoId !== todo.id) ? 
+                      <ItemDescription 
+                        todoItemValue = {todo.value}
+                        todoCompleted={ todo.completed }
+                        onChangeToggleCompleted={() => onTodoToggleCompleted(todo.id)} 
+                        todoEdit={() => this.todoEditHeandler(todo.id, todo.value)} 
+                        deleteTodo={() => this.deleteTodoHeandler(todo.id)} 
+                      />
+                    :
+                      <FormEdit 
+                        todoEditableSaveHeandler = {this.todoEditableSaveHeandler}
+                        todoValue = {selectedTodo.value} 
+                        linkRef = {this.todoInputEditRef}
+                        todoEditableChangeHeandler = {this.todoEditableChangeHeandler}
+                        onTodoEditHideForm = {onTodoEditHideForm}
+                      />
+                    }
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
 
-            <div className="filter-holder">
-              <ul className="list-group">
-                <li className="list-group-item" onClick={ ()=> onTodoFilter('All')} >All</li>
-                <li className="list-group-item"  onClick={ ()=> onTodoFilter('Active')} >Active</li>
-                <li className="list-group-item"  onClick={ ()=> onTodoFilter('Completed')} >Completed</li>
-              </ul>
-            </div>
-              
-            
+          <div className="filter-holder">
+            <ul className="list-group">
+              {filterGroup.map( (item, index)=> {
+                let cnGroupItem = classNames('list-group-item', {
+                  'item-active': filterTerm === item
+                });
+                return <li className={cnGroupItem} key={index} onClick={ () => onTodoFilter(item) } >{item}</li>   
+              })}
+            </ul>
           </div>
         </div>
-    
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -143,7 +142,9 @@ class TodoWrap extends Component {
 const mapStateToProps = (state) => {
   return {
     selectedTodo: state.todos.selectedTodo,
-    renderList: getNotesListRender(state)
+    renderList: getNotesListRender(state),
+    filterGroup: state.todos.filterGroup,
+    filterTerm: state.todos.filterTerm
   }
 }
 
@@ -187,14 +188,18 @@ TodoWrap.propTypes = {
       value: PropTypes.string,
       id: PropTypes.string
     }),
-    PropTypes.object,
+    PropTypes.object
   ]),
   renderList: PropTypes.arrayOf( PropTypes.shape({
       completed: PropTypes.bool,
       value: PropTypes.string,
       id: PropTypes.string
-  }))
+  })).isRequired,
+  filterGroup: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filterTerm: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
 
 export default TodoWrapConnect;
-
